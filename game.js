@@ -43,11 +43,11 @@
         let userWin = true;
 
         if (choiceId === "rock") {
-        userWin = compChoice === "sissors" ? true : false;
-        } else if (choiceId === "sissors") {
-        userWin = compChoice === "paper" ? true : false;
-        } else {
+        userWin = compChoice === "paper" ? false : true;
+        } else if (choiceId === "paper") {
         userWin = compChoice === "sissors" ? false : true;
+        } else {
+        userWin = compChoice === "rock" ? false : true;
         }
     
         win(userWin, compChoice, choiceId);

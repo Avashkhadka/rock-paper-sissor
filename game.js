@@ -31,7 +31,7 @@
      
     }
     
-    gameover(userScore,compScore);
+    gameover(choiceId,compScore);
     };
 
     const playGame = (choiceId) => {

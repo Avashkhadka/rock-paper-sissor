@@ -64,10 +64,10 @@
 
     let gameover=(userScore,compScore,)=>{
 
-  if(userScore===20){
+  if(userScore===10){
     alert("you won the game");
     location.reload();
-}else if(compScore===20){
+}else if(compScore===10){
     alert("you loose the game");
     location.reload();
   }

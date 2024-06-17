@@ -16,7 +16,7 @@
     message.style.backgroundColor = "#081b31";
     };
 
-    const win = (userWin, choiceId, compChoice) => {
+    const win = (userWin, compChoice,choiceId) => {
     if (userWin) {
         userScore += 1;
         userpoint.innerText = userScore;

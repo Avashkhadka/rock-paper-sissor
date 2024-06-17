@@ -1,58 +1,74 @@
-    let choice = document.querySelectorAll(".choice");
+    let userScore = 0;
+    let compScore = 0;
+    let choices = document.querySelectorAll(".choice");
     const message = document.querySelector(".message");
-    let userscore = document.querySelector("#userScore");
-    let compScore = document.querySelector("#compScore");
-    userpoint = 0;
-    comppoint = 0;
+    const userpoint = document.querySelector("#userScore");
+    const comppoint = document.querySelector("#compScore");
 
-    choice.forEach((choice) => {
-    choice.addEventListener("click", () => {
-        let userChoice = choice.getAttribute("id");
-
-        playGame(userChoice);
-    });
-    });
-
-    let generateComputerChoice = () => {
-    const option = ["rock", "paper", "sissors"];
-    let ramdomInd = Math.floor(Math.random() * 3);
+    const generateComputerChoice = () => {
+    let option = ["rock", "sissors", "paper"];
+    const ramdomInd = Math.floor(Math.random() * 3);
     return option[ramdomInd];
     };
 
-    let playGame = (userChoice) => {
-    let compChoice = generateComputerChoice();
+    const drawGame = () => {
+    message.innerText = "the game is draw! play again";
+    message.style.backgroundColor = "#081b31";
+    };
 
-    if (userChoice === compChoice) {
+    const win = (userWin, choiceId, compChoice) => {
+    if (userWin) {
+        userScore += 1;
+        userpoint.innerText = userScore;
+
+        message.innerText = `You win your ${choiceId} beats ${compChoice}`;
+        message.style.backgroundColor = "green";
+    } else {
+        compScore += 1;
+        comppoint.innerText = compScore;
+        message.innerText = `you loose ${compChoice} beats your ${choiceId}`;
+        message.style.backgroundColor = "red";
+     
+    }
+    
+    gameover(userScore,compScore);
+    };
+
+    const playGame = (choiceId) => {
+    const compChoice = generateComputerChoice();
+
+    if (choiceId === compChoice) {
         drawGame();
     } else {
         let userWin = true;
 
-        if (userChoice === "rock") {
+        if (choiceId === "rock") {
         userWin = compChoice === "sissors" ? true : false;
-        } else if (userChoice === "sissors") {
+        } else if (choiceId === "sissors") {
         userWin = compChoice === "paper" ? true : false;
         } else {
         userWin = compChoice === "sissors" ? false : true;
         }
-        gameWin(userWin, compChoice, userChoice);
+    
+        win(userWin, compChoice, choiceId);
     }
     };
 
-    let drawGame = () => {
-    message.innerText = `Game draw play again`;
-    message.style.backgroundColor = "#081b31";
-    };
+    choices.forEach((choice) => {
+    choice.addEventListener("click", () => {
+        const choiceId = choice.getAttribute("id");
+        playGame(choiceId);
+    });
+    });
 
-    let gameWin = (userWin, compChoice, userChoice) => {
-    if (userWin === true) {
-        userpoint++;
-        userscore.innerText = userpoint;
-        message.innerText = `You win your ${userChoice} beats ${compChoice}`;
-        message.style.backgroundColor = "green";
-    } else {
-        comppoint++;
-        compScore.innerText = comppoint;
-        message.innerText = `You lose ${compChoice} beats your ${userChoice}`;
-        message.style.backgroundColor = "red";
-    }
+
+    let gameover=(userScore,compScore,)=>{
+
+  if(userScore===20){
+    alert("you won the game");
+    location.reload();
+}else if(compScore===20){
+    alert("you loose the game");
+    location.reload();
+  }
     };

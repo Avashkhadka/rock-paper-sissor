@@ -16,17 +16,17 @@
     message.style.backgroundColor = "#081b31";
     };
 
-    const win = (userWin, choiceId,compChoice) => {
+    const win = (userWin, userChoice,compChoice) => {
     if (userWin) {
         userScore += 1;
         userpoint.innerText = userScore;
 
-        message.innerText = `You win your ${choiceId} beats ${compChoice}`;
+        message.innerText = `You win your ${userChoice} beats ${compChoice}`;
         message.style.backgroundColor = "green";
     } else {
         compScore += 1;
         comppoint.innerText = compScore;
-        message.innerText = `you loose ${compChoice} beats your ${choiceId}`;
+        message.innerText = `you loose ${compChoice} beats your ${userChoice}`;
         message.style.backgroundColor = "red";
      
     }
@@ -34,30 +34,30 @@
     gameover(userScore,compScore);
     };
 
-    const playGame = (choiceId) => {
+    const playGame = (userChoice) => {
     const compChoice = generateComputerChoice();
 
-    if (choiceId === compChoice) {
+    if (userChoice === compChoice) {
         drawGame();
     } else {
         let userWin = true;
 
-        if (choiceId === "rock") {
+        if (userChoice === "rock") {
         userWin = compChoice === "paper" ? false : true;
-        } else if (choiceId === "paper") {
+        } else if (userChoice === "paper") {
         userWin = compChoice === "sissors" ? false : true;
         } else {
         userWin = compChoice === "rock" ? false : true;
         }
     
-        win(userWin,choiceId ,compChoice );
+        win(userWin,userChoice ,compChoice );
     }
     };
 
     choices.forEach((choice) => {
     choice.addEventListener("click", () => {
-        const choiceId = choice.getAttribute("id");
-        playGame(choiceId);
+        const userChoice= userChoice.getAttribute("id");
+        playGame(userChoice);
     });
     });
 

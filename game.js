@@ -16,7 +16,7 @@
     message.style.backgroundColor = "#081b31";
     };
 
-    const win = (userWin, compChoice,choiceId) => {
+    const win = (userWin, choiceId,compChoice) => {
     if (userWin) {
         userScore += 1;
         userpoint.innerText = userScore;
@@ -50,7 +50,7 @@
         userWin = compChoice === "rock" ? false : true;
         }
     
-        win(userWin, compChoice, choiceId);
+        win(userWin,choiceId ,compChoice );
     }
     };
 

@@ -17,7 +17,7 @@
     };
 
     const win = (userWin, choiceId, compChoice) => {
-    if (userWin===true) {
+    if (userWin===false) {
         userScore += 1;
         userpoint.innerText = userScore;
 

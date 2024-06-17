@@ -1,6 +1,6 @@
     let userScore = 0;
     let compScore = 0;
-    let choices = document.querySelectorAll(".choices");
+    let choices = document.querySelectorAll(".choice");
     const message = document.querySelector(".message");
     const userpoint = document.querySelector("#userScore");
     const comppoint = document.querySelector("#compScore");
@@ -16,17 +16,17 @@
     message.style.backgroundColor = "#081b31";
     };
 
-    const win = (userWin, userChoice,compChoice) => {
+    const win = (userWin,choiceId,compChoice) => {
     if (userWin) {
         userScore += 1;
         userpoint.innerText = userScore;
 
-        message.innerText = `You win your ${userChoice} beats ${compChoice}`;
+        message.innerText = `You win your ${choiceId} beats ${compChoice}`;
         message.style.backgroundColor = "green";
     } else {
         compScore += 1;
         comppoint.innerText = compScore;
-        message.innerText = `you loose ${compChoice} beats your ${userChoice}`;
+        message.innerText = `you loose ${compChoice} beats your ${choiceId}`;
         message.style.backgroundColor = "red";
      
     }
@@ -34,35 +34,35 @@
     gameover(userScore,compScore);
     };
 
-    const playGame = (userChoice) => {
+    const playGame = (choiceId) => {
     const compChoice = generateComputerChoice();
 
-    if (userChoice === compChoice) {
+    if ( choiceId === compChoice) {
         drawGame();
     } else {
         let userWin = true;
 
-        if (userChoice === "rock") {
+        if (choiceId === "rock") {
         userWin = compChoice === "paper" ? false : true;
-        } else if (userChoice === "paper") {
+        } else if (choiceId === "paper") {
         userWin = compChoice === "sissors" ? false : true;
         } else {
         userWin = compChoice === "rock" ? false : true;
         }
     
-        win(userWin,userChoice ,compChoice );
+        win(userWin,choiceId ,compChoice );
     }
     };
 
     choices.forEach((choice) => {
     choice.addEventListener("click", () => {
-        const userChoice= choice.getAttribute("id");
-        playGame(userChoice);
+        const choiceId= choice.getAttribute("id");
+        playGame(choiceId);
     });
     });
 
 
-    let gameover=(userScore,compScore,)=>{
+    let gameover=(choiceId,compScore,)=>{
 
   if(userScore===10){
     alert("you won the game");
